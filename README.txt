@@ -1,0 +1,1 @@
+BogeyBot is a bot used for creating Golf Course Reservations.
