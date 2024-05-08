@@ -1,4 +1,3 @@
-
 from helpers.ValidResponse import getValidResponse
 from objects.User import User
 
@@ -8,6 +7,7 @@ def createUser():
   user_name = getUserName()
   current_user.first_name = user_name['first']
   current_user.last_name = user_name['last']
+  current_user.phone_number = getPhoneNumber()
 
   return current_user
 
@@ -55,3 +55,22 @@ def getName(name_type):
       name = input(f"{name_type} Name: ")
 
   return name
+
+def getPhoneNumber():
+  print("Please enter the phone number you would like reservation to be associated with.")
+
+  phone_number = input("Phone Number: ")
+
+  confirm_phone_number = False
+
+  while not confirm_phone_number:
+    print("Is this the correct phone number?")
+    print(phone_number + "\n")
+
+    if getValidResponse() == 'yes':
+      confirm_phone_number = True
+    else:
+      print("What email should be used?")
+      phone_number = input("Email: ")
+
+  return phone_number

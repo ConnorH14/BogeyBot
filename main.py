@@ -1,7 +1,7 @@
 import time
 import asyncio
-from helpers.UserInfo import createUser
-from helpers.ReservationInfo import createReservation
+from scripts.UserInfo import createUser
+from scripts.ReservationInfo import createReservation
 from playwright.async_api import async_playwright
 
 # Print the title for the Application
@@ -23,7 +23,9 @@ current_user = createUser()
 # Get info for golf reservation
 current_reservation = createReservation()
 
-print(current_user.email, current_user.first_name, current_user.last_name)
+
+# TODO Debug line to verify user -- remove
+print(current_user.email, current_user.first_name, current_user.last_name, current_user.phone_number)
 
 
 
