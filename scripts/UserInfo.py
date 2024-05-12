@@ -75,8 +75,8 @@ def getPhoneNumber():
     if getValidResponse() == 'yes':
       confirm_phone_number = True
     else:
-      print("What email should be used?")
-      phone_number = input("Email: ")
+      print("What phone number should be used?")
+      phone_number = input("Phone Number: ")
 
   clear()
   return phone_number
