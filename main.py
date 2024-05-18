@@ -1,9 +1,8 @@
-import time
 import asyncio
 from scripts.UserInfo import createUser
 from scripts.ReservationInfo import createReservation
+from scripts.LaunchBrowser import launchBrowser
 from helpers.ClearConsole import clear
-from playwright.async_api import async_playwright
 
 clear()
 
@@ -34,3 +33,5 @@ print(
     current_reservation.holes,
     current_reservation.start_now,
 )
+
+asyncio.run(launchBrowser())
