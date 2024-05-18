@@ -1,6 +1,6 @@
 from objects.Reservation import Reservation
 from helpers.ValidResponse import getValidResponse
-from helpers.VerifyDateFormat import verifyDateFormat
+from helpers.VerifyFormat import verifyDateFormat, verifyTimeFormat
 from helpers.ClearConsole import clear
 
 
@@ -25,7 +25,7 @@ def getCourse():
     while True:
         course = input("Type 1 or 2 to select your course: ")
         if course in ["1", "2"]:
-            print("Is this the course you selected?")
+            print("\nIs this the course you selected?")
             match course:
                 case "1":
                     print("Quail Hollow\n")
@@ -47,14 +47,14 @@ def getDate():
         date = input("Reservation Date: ")
 
         if verifyDateFormat(date) == True:
-            print("Is this the date you selected?")
+            print("\nIs this the date you selected?")
             print(date + "\n")
             if getValidResponse() == "yes":
                 break
             else:
-                print("Please enter a valid date: ")
+                print("Please enter a valid date. ")
         else:
-            print("Please enter a valid date: ")
+            print("Please enter a valid date. ")
 
     clear()
     return date
@@ -69,7 +69,7 @@ def getPlayerCount():
         player_count = input("Number of Players: ")
 
         if player_count in ["1", "2", "3", "4"]:
-            print("Is this the correct number of players?")
+            print("\nIs this the correct number of players?")
             print(player_count + "\n")
             if getValidResponse() == "yes":
                 break
@@ -83,8 +83,54 @@ def getPlayerCount():
 
 
 def getStartTime():
-    print()
-    return 1
+    print(
+        "Would you like to input a reservation time or take the earliest time available?"
+    )
+    print(
+        "If you select a time and it is not available, it will attempt to get the closest time."
+    )
+    print("1. Select a time.")
+    print("2. Take the earliest time available.")
+
+    while True:
+        earliest_time = input("Select Option: ")
+        if earliest_time in ["1", "2"]:
+            print("\nIs this the option you selected?")
+            match earliest_time:
+                case "1":
+                    print("Select a time.\n")
+                case "2":
+                    print("Take the earliest time available.\n")
+            if getValidResponse() == "yes":
+                break
+            else:
+                print("Please select one of the options.")
+        else:
+            print("Please select one of the options.")
+
+    if earliest_time == "1":
+        clear()
+        print("\nUsing the format 00:00 am/pm, please select your time.")
+        print("The time must be rounded to the closest quarter hour.")
+        print("Example: 09:15 am\n")
+
+        while True:
+            start_time = input("Select Time: ").lower()
+
+            if verifyTimeFormat(start_time) == True:
+                print("Is this the time you selected?")
+                print(start_time + "\n")
+                if getValidResponse() == "yes":
+                    break
+                else:
+                    print("Please enter a valid time. ")
+            else:
+                print("Please enter a valid time. ")
+    else:
+        start_time = "earliest"
+
+    clear()
+    return start_time
 
 
 def getHoleCount():
@@ -95,7 +141,7 @@ def getHoleCount():
     while True:
         holes = input("Number of Holes: ")
         if holes in ["1", "2"]:
-            print("Is this the correct number of holes?")
+            print("\nIs this the correct number of holes?")
             match holes:
                 case "1":
                     print("9 Holes\n")
@@ -120,10 +166,10 @@ def getStartNow():
     print("2. Wait until midnight to get the best time.")
 
     while True:
-        start_time = input("Select Option: ")
-        if start_time in ["1", "2"]:
-            print("Is this the option you chose?")
-            match start_time:
+        start_now = input("Select Option: ")
+        if start_now in ["1", "2"]:
+            print("\nIs this the option you chose?")
+            match start_now:
                 case "1":
                     print("Make the reservation now.\n")
                 case "2":
@@ -136,6 +182,4 @@ def getStartNow():
             print("Please select one of the options by typing 1 or 2.")
 
     clear()
-    return start_time
-
-    return 1
+    return start_now

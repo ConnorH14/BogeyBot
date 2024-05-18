@@ -6,7 +6,7 @@ from helpers.ClearConsole import clear
 def createUser():
     user_name = getUserName()
     current_user = User(
-        getUserEmail(), user_name["first"], user_name["last"], getPhoneNumber()
+        user_name["first"], user_name["last"], getUserEmail(), getPhoneNumber()
     )
 
     return current_user
@@ -20,7 +20,7 @@ def getUserEmail():
     confirm_email = False
 
     while not confirm_email:
-        print("Is this the correct email?")
+        print("\nIs this the correct email?")
         print(user_email + "\n")
 
         if getValidResponse() == "yes":
@@ -50,7 +50,7 @@ def getName(name_type):
     confirm_name = False
 
     while not confirm_name:
-        print(f"Is this the {name_type} Name you would like to use?")
+        print(f"\nIs this the {name_type} Name you would like to use?")
         print(name + "\n")
 
         if getValidResponse() == "yes":
@@ -73,7 +73,7 @@ def getPhoneNumber():
     confirm_phone_number = False
 
     while not confirm_phone_number:
-        print("Is this the correct phone number?")
+        print("\nIs this the correct phone number?")
         print(phone_number + "\n")
 
         if getValidResponse() == "yes":
