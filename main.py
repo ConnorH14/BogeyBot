@@ -21,4 +21,11 @@ current_reservation = createReservation()
 
 # TODO Debug line to verify user -- remove
 # print(current_user.email, current_user.first_name, current_user.last_name, current_user.phone_number)
-print(current_reservation.course, current_reservation.date, current_reservation.player_count, current_reservation.date, current_reservation.holes)
+print(
+    current_reservation.course,
+    current_reservation.date,
+    current_reservation.player_count,
+    current_reservation.date,
+    current_reservation.holes,
+    current_reservation.start_now,
+)
