@@ -18,7 +18,7 @@ clear()
 
 # Define new user and get user info
 # current_user = createUser()
-current_user = User("Connor", "Hines", "test@test.com", "2088095016")
+current_user = User("Tester", "Testington", "test@test.com", "2088088080")
 
 # Get info for golf reservation
 # current_reservation = createReservation()
