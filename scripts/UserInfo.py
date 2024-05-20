@@ -5,9 +5,7 @@ from helpers.ClearConsole import clear
 
 def createUser():
     user_name = getUserName()
-    current_user = User(
-        user_name["first"], user_name["last"], getUserEmail(), getPhoneNumber()
-    )
+    current_user = User(user_name["first"], user_name["last"], getUserEmail(), getPhoneNumber())
 
     return current_user
 
@@ -64,9 +62,7 @@ def getName(name_type):
 
 
 def getPhoneNumber():
-    print(
-        "Please enter the phone number you would like reservation to be associated with."
-    )
+    print("Please enter the phone number you would like reservation to be associated with.")
 
     phone_number = input("Phone Number: ")
 
