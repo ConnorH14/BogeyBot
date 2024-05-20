@@ -1,6 +1,7 @@
 from helpers.ValidResponse import getValidResponse
-from objects.User import User
+from helpers.VerifyFormat import verifyPhoneNumber
 from helpers.ClearConsole import clear
+from objects.User import User
 
 
 def createUser():
@@ -63,17 +64,16 @@ def getName(name_type):
 
 def getPhoneNumber():
     print("Please enter the phone number you would like reservation to be associated with.")
+    print("Only enter the number, no parentheses, dashes, or spaces.")
 
     phone_number = input("Phone Number: ")
 
-    confirm_phone_number = False
-
-    while not confirm_phone_number:
+    while True:
         print("\nIs this the correct phone number?")
         print(phone_number + "\n")
 
-        if getValidResponse() == "yes":
-            confirm_phone_number = True
+        if getValidResponse() == "yes" and verifyPhoneNumber(phone_number):
+            break
         else:
             print("What phone number should be used?")
             phone_number = input("Phone Number: ")

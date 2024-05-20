@@ -1,8 +1,7 @@
 def buildUrl(reservation):
 
     reservation.date = reservation.date.replace("/", "%2F")
-    reservation.time = reservation.time.replace(":", "%3A")
-    reservation.time = reservation.time.replace(" ", "+")
+    reservation.time = reservation.time.replace(":", "%3A").replace(" ", "+")
 
     url_prefix = (
         "https://web2.myvscloud.com/wbwsc/idboisewt.wsc/search.html?Action=Start&SubAction=&"

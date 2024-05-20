@@ -1,3 +1,10 @@
+def verifyPhoneNumber(input_phone_number):
+    if len(input_phone_number) != 10:
+        return False
+
+    return containsOnlyDigits(input_phone_number)
+
+
 def verifyDateFormat(input_date):
 
     if len(input_date) != 10:

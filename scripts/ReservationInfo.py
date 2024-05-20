@@ -82,7 +82,7 @@ def getPlayerCount():
 
 def getStartTime():
     print("Would you like to input a reservation time or take the earliest time available?")
-    print("If you select a time and it is not available, it will attempt to get the closest time.")
+    print("If you select that's not available, it will attempt to get the closest time after.")
     print("1. Let me select a time.")
     print("2. Take the earliest time available.")
 
