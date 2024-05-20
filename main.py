@@ -1,9 +1,10 @@
 import asyncio
 from scripts.UserInfo import createUser
 from scripts.ReservationInfo import createReservation
-from scripts.SearchReservation import searchReservation
+from scripts.ReservationNowFlow import createReservationNow
+from scripts.ReservationLaterFlow import createReservationLater
+from helpers.BuildUrl import buildUrl
 from helpers.ClearConsole import clear
-from playwright.async_api import async_playwright, Playwright
 
 # TODO - For test data
 from objects.Reservation import Reservation
@@ -22,37 +23,18 @@ current_user = User("Tester", "Testington", "test@test.com", "2088088080")
 
 # Get info for golf reservation
 # current_reservation = createReservation()
-current_reservation = Reservation("2", "05/20/2024", "4", "09:15 am", "2", "1")
+current_reservation = Reservation("1", "05/27/2024", "4", "09:00 am", "9", "1")
 
+# Determine which flow the bot needs to go into
+# Two different flows are starting now or making a fast midnight reservation
 
-# TODO Debug lines to verify user and reservation-- remove
-# print(
-#     current_user.email,
-#     current_user.first_name,
-#     current_user.last_name,
-#     current_user.phone_number,
-# )
-# print(
-#     current_reservation.course,
-#     current_reservation.date,
-#     current_reservation.player_count,
-#     current_reservation.time,
-#     current_reservation.holes,
-#     current_reservation.start_now,
-# )
+url = buildUrl(current_reservation)
 
-url = "https://web2.myvscloud.com/wbwsc/idboisewt.wsc/search.html?module=gr&display=detail&secondarycode=1"
+print(url)
 
-
-async def main():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
-        page = await browser.new_page()
-        await page.goto(url)
-        print("Launching Browser")
-        print("Found " + await page.title())
-
-        await searchReservation(page, current_user, current_reservation)
-
-
-asyncio.run(main())
+if current_reservation.start_now == "1":
+    print("now")
+    asyncio.run(createReservationNow(current_user, url))
+else:
+    print("later")
+    asyncio.run(createReservationLater(current_user, url))

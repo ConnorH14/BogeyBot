@@ -61,9 +61,7 @@ def getDate():
 
 
 def getPlayerCount():
-    print(
-        "Please enter the number of players that will be attending. (Between 1 and 4)"
-    )
+    print("Please enter the number of players that will be attending. (Between 1 and 4)")
 
     while True:
         player_count = input("Number of Players: ")
@@ -83,17 +81,13 @@ def getPlayerCount():
 
 
 def getStartTime():
-    print(
-        "Would you like to input a reservation time or take the earliest time available?"
-    )
-    print(
-        "If you select a time and it is not available, it will attempt to get the closest time."
-    )
-    print("1. Select a time.")
+    print("Would you like to input a reservation time or take the earliest time available?")
+    print("If you select a time and it is not available, it will attempt to get the closest time.")
+    print("1. Let me select a time.")
     print("2. Take the earliest time available.")
 
     while True:
-        earliest_time = input("Select Option: ")
+        earliest_time = input("Select Option 1 or 2 from above: ")
         if earliest_time in ["1", "2"]:
             print("\nIs this the option you selected?")
             match earliest_time:
@@ -127,7 +121,7 @@ def getStartTime():
             else:
                 print("Please enter a valid time. ")
     else:
-        start_time = "earliest"
+        start_time = "01:00 am"
 
     clear()
     return start_time
@@ -139,14 +133,16 @@ def getHoleCount():
     print("2. 18 Holes")
 
     while True:
-        holes = input("Number of Holes: ")
-        if holes in ["1", "2"]:
+        response = input("Number of Holes: ")
+        if response in ["1", "2"]:
             print("\nIs this the correct number of holes?")
-            match holes:
+            match response:
                 case "1":
                     print("9 Holes\n")
+                    holes = "9"
                 case "2":
                     print("18 Holes\n")
+                    holes = "18"
             if getValidResponse() == "yes":
                 break
             else:
@@ -159,9 +155,7 @@ def getHoleCount():
 
 
 def getStartNow():
-    print(
-        "Would you like BogeyBot to run now and make a reservation or wait until midnight?"
-    )
+    print("Would you like BogeyBot to run now and make a reservation or wait until midnight?")
     print("1. I would like to make the reservation right now.")
     print("2. Wait until midnight to get the best time.")
 
