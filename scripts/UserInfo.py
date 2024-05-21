@@ -66,17 +66,18 @@ def getPhoneNumber():
     print("Please enter the phone number you would like reservation to be associated with.")
     print("Only enter the number, no parentheses, dashes, or spaces.")
 
-    phone_number = input("Phone Number: ")
-
     while True:
-        print("\nIs this the correct phone number?")
-        print(phone_number + "\n")
+        phone_number = input("Phone Number: ")
 
-        if getValidResponse() == "yes" and verifyPhoneNumber(phone_number):
-            break
+        if verifyPhoneNumber(phone_number) == True:
+            print("\nIs this the correct phone number?")
+            print(phone_number + "\n")
+            if getValidResponse() == "yes":
+                break
+            else:
+                print("What phone number should be used?")
         else:
-            print("What phone number should be used?")
-            phone_number = input("Phone Number: ")
+            print("Please use a valid phone number.")
 
     clear()
     return phone_number

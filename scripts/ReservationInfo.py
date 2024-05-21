@@ -61,12 +61,12 @@ def getDate():
 
 
 def getPlayerCount():
-    print("Please enter the number of players that will be attending. (Between 1 and 4)")
+    print("Please enter the number of players that will be attending. (Between 2 and 4)")
 
     while True:
         player_count = input("Number of Players: ")
 
-        if player_count in ["1", "2", "3", "4"]:
+        if player_count in ["2", "3", "4"]:
             print("\nIs this the correct number of players?")
             print(player_count + "\n")
             if getValidResponse() == "yes":

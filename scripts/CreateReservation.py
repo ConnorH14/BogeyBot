@@ -1,10 +1,10 @@
 from playwright.async_api import async_playwright, Playwright
 
 
-async def createReservation(user, url):
+async def launchReservation(user, url):
     async with async_playwright() as p:
         print("Launching Browser.")
-        browser = await p.chromium.launch(headless=False)
+        browser = await p.chromium.launch()
         page = await browser.new_page()
         await page.goto(url)
         print("Found " + await page.title())
@@ -22,12 +22,25 @@ async def createReservation(user, url):
             await page.locator("//*[@id='processingprompts_dailyemail']").fill(user.email)
 
             # Click continue on form
-            # await page.locator("//*[@id='processingprompts_buttononeclicktofinish']").click()
+            await page.locator("//*[@id='processingprompts_buttononeclicktofinish']").click()
 
         except:
             print("Unable to create reservation.")
             print("Please verify a valid time and date was entered.")
 
-        print("ping")
+        try:
+            # Resend email confirmation to confirm user receives a copy
+            await page.locator("//*[@id='webconfirmation_emailreceipt']").fill(user.email)
+            await page.locator("//*[@id='webconfirmation_buttonsumbit']").click()
+
+            print("Your reservation has been created.")
+            print(f"Please check {user.email} for your reservation confirmation.")
+            print("Don't worry if you receive two emails, it's only one reservation.")
+
+        except:
+            print("Your reservation was created.")
+            print("An error occurred when emailing the reservation.")
+
+        await browser.close()
 
     return
