@@ -31,3 +31,5 @@ else:
     print("Creating Reservation at Midnight.")
     waitForNextDay()
     asyncio.run(launchReservation(current_user, url))
+
+input("Press enter to exit.")
